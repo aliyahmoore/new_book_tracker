@@ -1,0 +1,45 @@
+<h1>Add a New Book</h1>
+
+<%= form_with(model: @book, local: true) do |form| %>
+
+   <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :author %><br>
+    <%= form.text_field :author %><br>
+  </div>
+
+  <%= form.label :genre %>
+  <%= form.text_field :genre %>
+
+  <%= form.label :status %>
+  <%= form.select :status, ["currently reading", "to read", "completed"], prompt: "Select Status" %>
+
+   <div>
+    <%= form.label :book_club_id, "Book Club (Optional)" %>
+    <%= form.select :book_club_id, options_from_collection_for_select(@book_clubs, :id, :name, @book.book_club_id), include_blank: "No Book Club" %>
+  </div>
+
+  <div>
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div>
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+  <%= form.submit "Add Book", class: "btn btn-success" %>
+  </div>
+<% end %>
+

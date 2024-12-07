@@ -1,8 +1,20 @@
 class UsersController < ApplicationController
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
-  has_many :book_clubs, dependent: :destroy
-  has_many :books, through: :book_clubs
-  has_many :notes, dependent: :destroy
+  def new
+    @user = User.new
+  end
 
-  validates :username, presence: true
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to booktracker_path
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :password, :username)
+  end
 end

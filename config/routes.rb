@@ -1,17 +1,10 @@
 Rails.application.routes.draw do
   # Devise routes for user authentication
   devise_for :users
-
-  # Resources for book clubs
   resources :book_clubs, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
-
-  # Resources for books
   resources :books, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
-
-  # Custom route for user profile
   resources :users, only: [ :show, :edit, :update ]
 
-  # Define your application root
   root "booktracker#index"
 
   # Health check route
