@@ -1,7 +1,7 @@
 <h1><%= @book.title %></h1>
-  <p><strong>Author:</strong> <%= @book.author %></p>
-  <p><strong>Genre:</strong> <%= @book.genre %></p>
-  <p><strong>Notes:</strong> <%= @book.notes %></p>
-  <p><strong>Status:</strong> <%= @book.status %></p>
-  <p><strong>Start Date:</strong> <%= @book.start_date %></p>
-  <p><strong>End Date:</strong> <%= @book.end_date %></p>
+
+<p><%= @book.body %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_book_path(@book) %></li>
+</ul>
