@@ -1,6 +1,6 @@
 <h1>Add a New Book</h1>
 
-<%= form_with(model: @book, local: true) do |form| %>
+ <%= form_with model: @book, url: books_path do |form| %>
 
    <div>
     <%= form.label :title %><br>
@@ -16,7 +16,7 @@
   <%= form.text_field :genre %>
 
   <%= form.label :status %>
-  <%= form.select :status, ["currently reading", "to read", "completed"], prompt: "Select Status" %>
+  <%= form.select :status, ["Currently Reading", "To Read", "Completed"], prompt: "Select Status" %>
 
    <div>
     <%= form.label :book_club_id, "Book Club (Optional)" %>

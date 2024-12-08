@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "New Book Tracker" %></title>
+     <title><%= content_for(:title) || "Book Tracker" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -30,7 +30,8 @@
           <%= button_to "Sign In", user_session_path, class: "auth-button" %>
       <% end %>
     </div>
-    
+
+    <%= render 'booktracker/navbar' %>
     <%= yield %>
   </body>
 </html>

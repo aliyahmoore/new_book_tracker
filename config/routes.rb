@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # Devise routes for user authentication
   devise_for :users
-  resources :book_clubs, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
-  resources :books, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
+  resources :book_clubs
+  resources :books
   resources :users, only: [ :show, :edit, :update ]
 
   root "booktracker#index"

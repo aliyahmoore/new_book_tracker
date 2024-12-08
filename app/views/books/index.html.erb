@@ -5,12 +5,9 @@
 
 <ul>
   <% @books.each do |book| %>
-    <li>
-      <strong>Title:</strong> <%= book.title %> <br>
-      <strong>Author:</strong> <%= book.author %> <br>
-      <%= link_to "Show", book_path(book) %> |
-      <%= link_to "Edit", edit_book_path(book) %> |
-      <%= link_to "Delete", book_path(book), method: :delete, data: { confirm: "Are you sure?" } %>
+     <li>
+      <%= link_to book.title, book %>
     </li>
   <% end %>
 </ul>
+

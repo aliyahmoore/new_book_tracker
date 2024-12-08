@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_book_clubs, only: [ :new, :create, :edit, :update ]
   def index
     @books = Book.all
   end
@@ -13,7 +14,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.new(book_params)
 
     if @book.save
       redirect_to @book
@@ -42,6 +43,10 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def set_book_clubs
+    @book_clubs = BookClub.all
+  end
 
   def book_params
     params.require(:book).permit(:title, :author, :genre, :status, :book_club_id, :notes, :start_date, :end_date)
