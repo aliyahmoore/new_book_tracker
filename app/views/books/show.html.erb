@@ -1,7 +1,11 @@
 <h1><%= @book.title %></h1>
 
-<p><%= @book.body %></p>
+<p><%= @book.author %></p>
+<p><%= @book.genre %></p>
+<p><%= @book.notes %></p>
+<p><%= @book.start_date %> - <%= @book.end_date %></p>
 
 <ul>
   <li><%= link_to "Edit", edit_book_path(@book) %></li>
+  <li><%= link_to "Delete", @book, method: :delete, data: { confirm: "Are you sure?" } %></li>
 </ul>
