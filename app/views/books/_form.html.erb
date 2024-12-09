@@ -1,6 +1,4 @@
-<h1>Add a New Book</h1>
-
- <%= form_with model: @book, url: books_path do |form| %>
+<%= form_with(model: @book, local: true, method: :patch) do |form| %>
 
    <div>
     <%= form.label :title %><br>

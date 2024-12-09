@@ -1,2 +1,12 @@
-<h1>BookClubs#show</h1>
-<p>Find me in app/views/book_clubs/show.html.erb</p>
+<h1><%= @book_club.name %></h1>
+<p><%= @book_club.description %></p>
+
+<ul>
+  <% @books.each do |book| %>
+    <li>
+      <%= link_to book.title, book_path(book) %> by <%= book.author %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_book_club_path(@book_club) %> | <%= link_to 'Back', book_clubs_path %>
