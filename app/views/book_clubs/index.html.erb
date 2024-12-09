@@ -1,2 +1,12 @@
 <h1>Your Book Clubs</h1>
 
+<%= link_to "Add New Book Club", new_book_club_path, class: "btn btn-primary" %>
+<%= @book_clubs.count %>
+
+<ul>
+  <% @book_clubs.each do |book_club| %>
+    <li>
+      <%= link_to book_club.name, book_club %>
+    </li>
+  <% end %>
+</ul>
