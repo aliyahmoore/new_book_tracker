@@ -1,6 +1,5 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: [ :show, :edit, :update, :destroy ]
   before_action :set_book_clubs, only: [ :new, :create, :edit, :update ]
   def index
     @books = Book.all
@@ -29,6 +28,8 @@ class BooksController < ApplicationController
   end
 
   def update
+    @book = Book.find(params[:id])
+
     if @book.update(book_params)
       redirect_to @book
     else

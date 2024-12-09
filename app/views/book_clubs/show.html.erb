@@ -1,12 +1,11 @@
 <h1><%= @book_club.name %></h1>
+
 <p><%= @book_club.description %></p>
 
 <ul>
-  <% @books.each do |book| %>
-    <li>
-      <%= link_to book.title, book_path(book) %> by <%= book.author %>
-    </li>
-  <% end %>
+  <li><%= link_to "Edit", edit_book_club_path(@book_club) %></li>
+  <li><%= link_to "Destroy", book_club_path(@book_club), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
 </ul>
-
-<%= link_to 'Edit', edit_book_club_path(@book_club) %> | <%= link_to 'Back', book_clubs_path %>
