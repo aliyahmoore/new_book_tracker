@@ -5,12 +5,9 @@
 <p><%= @book.notes %></p>
 <p><%= @book.status %></p>
 <p><%= @book.start_date %> - <%= @book.end_date %></p>
-<p><%= @book.book_club %></p>
+<p><%= @book.book_club.present? ? @book.book_club.name : 'No associated book club' %></p>
 
 <ul>
   <li><%= link_to "Edit", edit_book_path(@book) %></li>
-  <li><%= link_to "Destroy", book_path(@book), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
+  <li><%= link_to "Destroy", @book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
 </ul>
