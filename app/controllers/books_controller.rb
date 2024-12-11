@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book_clubs, only: [ :new, :create, :edit, :update ]
   def index
-    @books = Book.all
+    @books = current_user.books
   end
 
   def show
@@ -14,12 +14,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.books.new(book_params)
+    book = current_user.books.build(book_params)
 
-    if @book.save
-      redirect_to @book
+    if book.save
+      render json: { message: "Book successfully added to your list!" }, status: :ok
     else
-      render :new, status: :unprocessable_entity
+      render json: { error: "Unable to add book to your list." }, status: :unprocessable_entity
     end
   end
 
@@ -29,17 +29,16 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-
     if @book.update(book_params)
-      redirect_to @book
+      redirect_to @book, notice: "Book was successfully updated!"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @book = Book.find(params[:id])
-    @book.destroy
+    @book.destroy!
 
     redirect_to books_path, status: :see_other
   end

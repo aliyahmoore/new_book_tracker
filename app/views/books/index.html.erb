@@ -1,7 +1,7 @@
 <h1>Your Books</h1>
 
 <%= link_to "Add New Book", new_book_path, class: "btn btn-primary" %>
-<%= Book.count %>
+<%= @books.count %>
 
 <ul>
   <% @books.each do |book| %>

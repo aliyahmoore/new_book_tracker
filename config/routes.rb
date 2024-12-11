@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :books
   resources :users, only: [ :show, :edit, :update ]
 
+
   root "booktracker#index"
 
   # Health check route

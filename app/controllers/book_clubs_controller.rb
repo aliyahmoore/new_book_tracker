@@ -3,7 +3,7 @@ class BookClubsController < ApplicationController
   before_action :set_book_club, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @book_clubs = BookClub.all
+    @book_clubs = current_user.book_clubs.all
   end
 
   def show
@@ -40,7 +40,7 @@ class BookClubsController < ApplicationController
 
   def destroy
     @book_club = BookClub.find(params[:id])
-    @book_club.destroy
+    @book_club.destroy!
 
     redirect_to book_clubs_path, status: :see_other
   end

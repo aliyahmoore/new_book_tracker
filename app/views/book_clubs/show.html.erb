@@ -2,10 +2,14 @@
 
 <p><%= @book_club.description %></p>
 
+<h2>Books in this club:</h2>
+<ul>
+  <% @book_club.books.each do |book| %>
+    <li><%= book.title %></li>
+  <% end %>
+</ul>
+
 <ul>
   <li><%= link_to "Edit", edit_book_club_path(@book_club) %></li>
-  <li><%= link_to "Destroy", book_club_path(@book_club), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
+<li><%= link_to "Destroy", book_club_path(@book_club), method: :delete, data: { confirm: 'Are you sure?' } %></li>
 </ul>
