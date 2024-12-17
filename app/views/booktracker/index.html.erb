@@ -1,6 +1,46 @@
-<h1>Search Our Book Library</h1>
-<div class="search-container">
-  <input type="text" id="bookSearch" placeholder="Enter a book or author">
-  <button id="searchButton">Search</button>
-</div>
-<div id="results"></div>
+<head>
+  <title>Welcome to Your Books Dashboard</title>
+  <%= stylesheet_link_tag 'book_tracker', media: 'all' %> 
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
+</head>
+
+<body class="booktracker home">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="sticky-note">
+          <h2>My Recent Books</h2>
+          <ul>
+            <% if @recent_books.any? %>
+              <% @recent_books.each do |book| %>
+                <li><%= link_to book.title, book_path(book) %></li>
+              <% end %>
+            <% else %>
+              <li>No recent books to display</li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="sticky-note">
+          <h2>My Book Clubs</h2>
+          <ul>
+            <% @book_clubs.each do |club| %>
+              <li><%= link_to club.name, book_club_path(club) %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<%= form_with url: new_search_path, method: :get, local: true do |form| %>
+  <div>
+    <%= form.label :search, "Search for a book:" %>
+    <%= form.text_field :search, placeholder: "Enter book title or author" %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+

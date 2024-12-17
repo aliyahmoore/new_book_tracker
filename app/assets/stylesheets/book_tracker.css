@@ -1,0 +1,33 @@
+.sticky-note {
+    background-color: #fffdd0; /* Cream color */
+    border: 1px solid #e0e0e0; /* Light border for a subtle edge */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    height: 100%; /* Ensure consistent height */
+  }
+  
+  .sticky-note h2 {
+    font-family: 'Georgia', serif; /* Add a touch of elegance */
+    color: #333; /* Dark text for contrast */
+  }
+  
+  .sticky-note ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+  }
+  
+  .sticky-note li {
+    margin-bottom: 10px;
+  }
+  
+  .sticky-note li a {
+    text-decoration: none;
+    color: #007bff; /* Bootstrap primary blue */
+  }
+  
+  .sticky-note li a:hover {
+    text-decoration: underline;
+  }
+
+  \\

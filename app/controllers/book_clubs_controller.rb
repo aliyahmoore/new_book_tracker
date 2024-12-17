@@ -40,9 +40,9 @@ class BookClubsController < ApplicationController
 
   def destroy
     @book_club = BookClub.find(params[:id])
-    @book_club.destroy!
+    @book_club.destroy
 
-    redirect_to book_clubs_path, status: :see_other
+    redirect_to root_path, status: :see_other
   end
 
   private

@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book_clubs, only: [ :new, :create, :edit, :update ]
+  before_action :set_book, only: [ :show, :edit, :update, :destroy ]
+
   def index
     @books = current_user.books
   end
@@ -14,12 +16,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = current_user.books.build(book_params)
+    @book = current_user.books.build(book_params)
 
-    if book.save
-      render json: { message: "Book successfully added to your list!" }, status: :ok
+    if @book.save
+      redirect_to @book
     else
-      render json: { error: "Unable to add book to your list." }, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -38,19 +40,31 @@ class BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:id])
-    @book.destroy!
+    @book.destroy
 
-    redirect_to books_path, status: :see_other
+    redirect_to root_path, status: :see_other
+  end
+
+  def add_to_user_books
+    book = Book.find_by(google_id: params[:google_id]) # Assuming 'google_id' is the unique identifier for your books
+    if book
+      current_user.books << book
+      redirect_to new_search_path, notice: "Book added to your list successfully!"
+    else
+      redirect_to new_search_path, alert: "Could not add book to your list. Please try again."
+    end
   end
 
   private
 
-  def set_book
-    @book = Book.find(params[:id])
-  end
-
   def set_book_clubs
     @book_clubs = BookClub.all
+  end
+
+  def set_book
+    @book = current_user.books.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: "Book not found."
   end
 
   def book_params

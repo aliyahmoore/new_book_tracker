@@ -1,13 +1,30 @@
-<h1><%= @book.title %></h1>
+<div class="container">
+  <h1><%= @book.title %></h1>
+  <p><strong>Author:</strong> <%= @book.author %></p>
+  <p><strong>Genre:</strong> <%= @book.genre %></p>
+  <p><strong>Status:</strong> <%= @book.status %></p>
+  <p><strong>Notes:</strong> <%= @book.notes %></p>
+  <p><strong>Start Date:</strong> <%= @book.start_date %></p>
+  <p><strong>End Date:</strong> <%= @book.end_date %></p>
 
-<p><%= @book.author %></p>
-<p><%= @book.genre %></p>
-<p><%= @book.notes %></p>
-<p><%= @book.status %></p>
-<p><%= @book.start_date %> - <%= @book.end_date %></p>
-<p><%= @book.book_club.present? ? @book.book_club.name : 'No associated book club' %></p>
+  <% if @book.book_club %>
+    <p><strong>Book Club:</strong> <%= @book.book_club.name %></p>
+    <p><strong>Description:</strong> <%= @book.book_club.description %></p>
+  <% else %>
+    <p><strong>Book Club:</strong> Not associated with any book club</p>
+  <% end %>
 
-<ul>
-  <li><%= link_to "Edit", edit_book_path(@book) %></li>
-  <li><%= link_to "Destroy", @book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-</ul>
+  <% if @book.image_link %>
+    <div class="book-image">
+      <%= image_tag @book.image_link, alt: "Book Image", class: "img-fluid" %>
+    </div>
+  <% else %>
+    <p><strong>Image:</strong> No image available</p>
+  <% end %>
+
+<div>
+  <ul>
+    <li><%= link_to "Edit", edit_book_path(@book), class: "btn btn-secondary w-30 mb-2" %></li>
+    <li><%= link_to "Delete Book", book_path(@book), class: "btn btn-secondary w-30 mb-2" %></li>
+  </ul>
+</div>

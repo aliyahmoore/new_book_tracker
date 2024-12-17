@@ -1,15 +1,28 @@
-<h1><%= @book_club.name %></h1>
+<div class="container">
+  <h1><%= @book_club.name %></h1>
+  <p>Total Books: <%= @book_club.books.count %></p>
 
-<p><%= @book_club.description %></p>
 
-<h2>Books in this club:</h2>
-<ul>
+  <p><strong>Description:</strong> <%= @book_club.description %></p>
+
+<p><strong>Books In This Club:</strong></p>
+<ul class="list-group list-unstyled">
   <% @book_club.books.each do |book| %>
-    <li><%= book.title %></li>
+    <li class="list-group-item">
+      <%= book.title %><br>
+      <strong>Author:</strong> <%= book.author %><br>
+      <strong>Status:</strong> <%= book.status %><br>
+    </li>
   <% end %>
 </ul>
 
-<ul>
-  <li><%= link_to "Edit", edit_book_club_path(@book_club) %></li>
-<li><%= link_to "Destroy", book_club_path(@book_club), method: :delete, data: { confirm: 'Are you sure?' } %></li>
-</ul>
+<div>
+  <ul>
+    <li>
+      <%= link_to 'Edit Book Club', edit_book_club_path(@book_club), class: "btn btn-secondary w-30 mb-2" %>
+    </li>
+    <li>
+      <%= link_to "Delete Book Club", book_path(@book_club), class: "btn btn-secondary w-30 mb-2" %>
+    </li>
+  </ul>
+</div>
