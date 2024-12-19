@@ -39,8 +39,9 @@
     <div class="comment">
       <h4><%= comment.title %></h4>
       <p><%= comment.body %></p>
-      <small><%= comment.date.to_date %></small>
-      <%= button_to 'Delete', book_comment_path(@book, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <% if comment.user == current_user %>
+        <%= button_to 'Delete', book_comment_path(@book, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <% end %>
     </div>
   <% end %>
 

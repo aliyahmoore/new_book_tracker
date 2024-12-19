@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @book.comments.new(comment_params)
+    @comment.user = current_user
 
     if @comment.save
       redirect_to @book, notice: "Comment was successfully added."
@@ -14,9 +15,13 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @book.comments.find(params[:id])
-    @comment.destroy
 
-    redirect_to book_path(@book), notice: "Comment was successfully deleted."
+    if @comment.user == current_user
+      @comment.destroy
+      redirect_to book_path(@book), notice: "Comment was successfully deleted."
+    else
+      redirect_to book_path(@book), alert: "You are not authorized to delete this comment."
+    end
   end
 
   private
