@@ -1,0 +1,44 @@
+.centered-h2 {
+    text-align: center;
+    color: #333;
+    font-family: 'Newsreader', serif;
+}
+
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fffedd; 
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto; 
+    max-width: 800px; 
+    font-family: 'Newsreader', serif;
+}
+
+.book-list {
+    list-style-type: none;
+    padding: 0;
+    font-family: 'Newsreader', serif;
+}
+
+.book-box {
+    background-color: #fffbf2; 
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+    font-family: 'Newsreader', serif;
+}
+
+.book-image {
+    max-width: 100%; 
+    height: auto;
+}
+
+.book-title, .book-author, .book-genre, .book-description {
+    margin: 10px 0; 
+    font-family: 'Newsreader', serif;
+}

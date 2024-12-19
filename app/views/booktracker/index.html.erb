@@ -2,14 +2,54 @@
   <title>Welcome to Your Books Dashboard</title>
   <%= stylesheet_link_tag 'book_tracker', media: 'all' %> 
   <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
+  <script>
+    const quotes = [
+      { text: "The only impossible journey is the one you never begin.", author: "Tony Robbins" },
+      { text: "A room without books is like a body without a soul.", author: "Cicero" },
+      { text: "Reading is to the mind what exercise is to the body.", author: "Joseph Addison" },
+    ];
+
+    function getRandomQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      return quotes[randomIndex];
+    }
+
+    function displayQuote() {
+      const quoteElement = document.getElementById('random-quote');
+      const { text, author } = getRandomQuote();
+      quoteElement.textContent = `"${text}" - ${author}`;
+    }
+
+    window.onload = function() {
+      displayQuote(); 
+      setInterval(displayQuote, 60000); 
+    }
+  </script>
 </head>
 
 <body class="booktracker home">
+  <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> 
+
+<div class="user-info">
+  <% if user_signed_in? %>
+    <p class="username">Welcome, <%= current_user.username %> 👋 </p>
+    <p style="text-align: center;">Happy Reading...</p>
+    <p id="random-quote" class="quote"></p> 
+<div class="d-flex justify-content-end">
+  <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn signout-btn" %>
+</div>
+  <% else %>
+    <%= button_to "Sign In", user_session_path, class: "auth-button" %>
+    <%= button_to "Sign Up", new_user_registration_path, method: :get, class: "auth-button" %>
+  <% end %>
+</div>
+
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-6">
         <div class="sticky-note">
-          <h2>My Recent Books</h2>
+          <h2>Your Recent Reads...</h2>
           <ul>
             <% if @recent_books.any? %>
               <% @recent_books.each do |book| %>
@@ -23,7 +63,7 @@
       </div>
       <div class="col-md-6">
         <div class="sticky-note">
-          <h2>My Book Clubs</h2>
+          <h2>Your Book Clubs...</h2>
           <ul>
             <% @book_clubs.each do |club| %>
               <li><%= link_to club.name, book_club_path(club) %></li>
@@ -33,14 +73,9 @@
       </div>
     </div>
   </div>
-</body>
-
-<%= form_with url: new_search_path, method: :get, local: true do |form| %>
-  <div>
-    <%= form.label :search, "Search for a book:" %>
-    <%= form.text_field :search, placeholder: "Enter book title or author" %>
-    <%= form.submit "Search", class: "btn btn-primary" %>
+  <div class="text-center">
+    <img src="https://bookclubs.com/media/images/alt-homepage/banner_home2x.png" alt="Book Icon" class="styled-footer-icon">
   </div>
-<% end %>
+  <div id="random-quote" class="random-quote"></div>
 
-
+</body>

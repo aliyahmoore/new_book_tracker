@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_17_015422) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_18_222525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_17_015422) do
     t.string "google_id"
     t.string "image_url"
     t.text "description"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "date"
+    t.bigint "book_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_comments_on_book_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -72,4 +82,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_17_015422) do
   end
 
   add_foreign_key "book_clubs", "users"
+  add_foreign_key "comments", "books"
 end

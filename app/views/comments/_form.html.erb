@@ -1,0 +1,21 @@
+<%= form_with(model: [@book, Comment.new], local: true) do |form| %>
+  <div class="comment-form">
+    <%= form.label :title, "Comment Title" %>
+    <%= form.text_field :title, required: true, class: "form-control" %>
+  </div>
+
+  <div class="comment-form">
+    <%= form.label :body, "Comment Body" %>
+    <%= form.text_area :body, required: true, class: "form-control" %>
+  </div>
+
+  <div class="comment-form">
+    <%= form.label :date, "Date" %>
+    <%= form.date_select :date, required: true, class: "form-control" %>
+  </div>
+
+  <div class="comment-form">
+    <%= form.submit "Add Comment", class: "btn btn-primary" %>
+  </div>
+  
+<% end %>

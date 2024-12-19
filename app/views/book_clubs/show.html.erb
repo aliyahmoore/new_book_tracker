@@ -1,28 +1,26 @@
-<div class="container">
+<div class="container" style="font-family: 'Newsreader', serif; font-size: 1.2rem; text-align: center; background-color: #f8f9fa;">
   <h1><%= @book_club.name %></h1>
   <p>Total Books: <%= @book_club.books.count %></p>
-
-
   <p><strong>Description:</strong> <%= @book_club.description %></p>
 
-<p><strong>Books In This Club:</strong></p>
-<ul class="list-group list-unstyled">
-  <% @book_club.books.each do |book| %>
-    <li class="list-group-item">
-      <%= book.title %><br>
-      <strong>Author:</strong> <%= book.author %><br>
-      <strong>Status:</strong> <%= book.status %><br>
-    </li>
-  <% end %>
-</ul>
-
-<div>
-  <ul>
-    <li>
-      <%= link_to 'Edit Book Club', edit_book_club_path(@book_club), class: "btn btn-secondary w-30 mb-2" %>
-    </li>
-    <li>
-      <%= link_to "Delete Book Club", book_path(@book_club), class: "btn btn-secondary w-30 mb-2" %>
-    </li>
+  <p><strong>Books In This Club:</strong></p>
+  <ul class="list-group list-unstyled">
+    <% @book_club.books.each do |book| %>
+      <li class="list-group-item">
+        <%= book.title %><br>
+        <strong>Author:</strong> <%= book.author %><br>
+        <strong>Status:</strong> <%= book.status %><br>
+      </li>
+    <% end %>
   </ul>
+
+  <div class="mt-4">
+    <ul style="list-style-type: none; padding: 0;">
+      <li><%= link_to "Edit Book Club", edit_book_club_path(@book_club), class: "btn btn-secondary border-0 w-30 mb-2" %></li>
+      <%= button_to "Delete Book Club", book_club_path(@book_club), 
+          method: :delete, 
+          data: { confirm: "Are you sure?" }, 
+          class: "btn btn-warning text-white w-30 mb-2" %>
+    </ul>
+  </div>
 </div>

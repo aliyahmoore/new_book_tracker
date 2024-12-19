@@ -45,25 +45,28 @@ class BooktrackerController < ApplicationController
   def create_from_api
     book = Book.find_or_initialize_by(google_id: params[:google_id])
 
-  if book.new_record?
-    api_response = params[:google_books_instance]
+    if book.new_record?
+      api_response = params[:google_books_instance]
 
-    book.assign_attributes(
-      google_id: api_response["id"],
-      title: api_response["volumeInfo"]["title"],
-      author: api_response["volumeInfo"]["authors"]&.join(", "),
-      genre: api_response["volumeInfo"]["categories"]&.first,
-      description: api_response["volumeInfo"]["description"],
-      image_url: api_response["volumeInfo"]["imageLinks"]&.dig("thumbnail")
-    )
-  end
+      book.assign_attributes(
+        google_id: api_response["id"],
+        title: api_response["volumeInfo"]["title"],
+        author: api_response["volumeInfo"]["authors"]&.join(", "),
+        genre: api_response["volumeInfo"]["categories"]&.first,
+        description: api_response["volumeInfo"]["description"],
+        image_url: api_response["volumeInfo"]["imageLinks"]&.dig("thumbnail"),
+        status: "To Read",
+        user: current_user
+      )
+    end
 
-  if book.save
-    current_user.books << book unless current_user.books.exists?(id: book.id)
-    redirect_to book_path(book), notice: "Book added to your list successfully!"
-  else
-    redirect_to new_search_path, alert: "Could not save the book. Please try again."
-  end
+    if book.valid? && book.save
+      current_user.books << book unless current_user.books.exists?(id: book.id)
+      redirect_to book_path(book), notice: "Book added to your list successfully!"
+    else
+      puts book.errors.full_messages
+      redirect_to new_search_path, alert: "Could not save the book. Please try again."
+    end
   end
 
   def show

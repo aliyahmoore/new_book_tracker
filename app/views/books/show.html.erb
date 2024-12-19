@@ -1,4 +1,8 @@
-<div class="container">
+<head>
+  <%= stylesheet_link_tag 'comments', media: 'all' %>
+</head>
+
+<div class="container" style="font-family: 'Newsreader', serif; font-size: 1.2rem; text-align: center; background-color: #f8f9fa;">
   <h1><%= @book.title %></h1>
   <p><strong>Author:</strong> <%= @book.author %></p>
   <p><strong>Genre:</strong> <%= @book.genre %></p>
@@ -9,22 +13,39 @@
 
   <% if @book.book_club %>
     <p><strong>Book Club:</strong> <%= @book.book_club.name %></p>
-    <p><strong>Description:</strong> <%= @book.book_club.description %></p>
   <% else %>
     <p><strong>Book Club:</strong> Not associated with any book club</p>
   <% end %>
 
-  <% if @book.image_link %>
+  <% if @book.image_url.present? %>
     <div class="book-image">
-      <%= image_tag @book.image_link, alt: "Book Image", class: "img-fluid" %>
+      <%= image_tag @book.image_url, alt: "Book Image", class: "img-fluid" %>
     </div>
-  <% else %>
-    <p><strong>Image:</strong> No image available</p>
   <% end %>
 
-<div>
-  <ul>
-    <li><%= link_to "Edit", edit_book_path(@book), class: "btn btn-secondary w-30 mb-2" %></li>
-    <li><%= link_to "Delete Book", book_path(@book), class: "btn btn-secondary w-30 mb-2" %></li>
-  </ul>
+  <div class="mt-4 text-center">
+    <ul style="list-style-type: none; padding: 0;">
+      <li><%= link_to "Edit Book", edit_book_path(@book), class: "btn btn-secondary border-0 w-30 mb-2" %></li>
+      <%= button_to "Delete Book", book_path(@book), 
+          method: :delete, 
+          data: { confirm: "Are you sure?" }, 
+          class: "btn btn-warning text-white w-30 mb-2" %>
+    </ul>
+  </div>
+</div>
+
+<div class="book-show">
+  <% @book.comments.each do |comment| %>
+    <div class="comment">
+      <h4><%= comment.title %></h4>
+      <p><%= comment.body %></p>
+      <small><%= comment.date.to_date %></small>
+      <%= button_to 'Delete', book_comment_path(@book, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    </div>
+  <% end %>
+
+  <div class="comment-form-container">
+    <h3>Add a Comment</h3>
+    <%= render 'comments/form', book: @book %>
+  </div>
 </div>

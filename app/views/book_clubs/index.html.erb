@@ -1,5 +1,9 @@
-<div class="container text-center">
-  <h1>My Book Clubs</h1>
+<head>
+  <%= stylesheet_link_tag 'bookclub', media: 'all' %>
+</head>
+
+<div class="container centered-container">
+  <h1 class="centered-h2">My Book Clubs</h1>
 
   <%= link_to "Add New Book Club", new_book_club_path, class: "btn btn-primary mb-3" %>
 
@@ -7,8 +11,8 @@
 
   <ul class="list-group">
     <% @book_clubs.each do |book_club| %>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <%= link_to book_club.name, book_club_path(book_club), class: "text-decoration-none" %>
+      <li class="list-group-item d-flex justify-content-between align-items-center book-box">
+        <%= link_to book_club.name, book_club_path(book_club), class: "text-decoration-none book-title" %>
       </li>
     <% end %>
   </ul>

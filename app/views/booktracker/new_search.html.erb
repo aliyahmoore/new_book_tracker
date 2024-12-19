@@ -1,21 +1,23 @@
-<h2>Search Results</h2>
-
-<div>
+<head>
+  <%= stylesheet_link_tag 'new_search', media: 'all' %>
+</head>
+<div class="centered-container">
+  <h2 class="centered-h2">Search Results</h2>
   <% if flash[:message] %>
     <p class="alert alert-warning"><%= flash[:message] %></p>
   <% elsif @google_books_instances.any? %>
-    <ul>
+    <ul class="book-list">
       <% @google_books_instances.each do |book| %>
-        <li>
-          <h3><%= book["volumeInfo"]["title"] %></h3>
-          <img src="<%= book["volumeInfo"]["imageLinks"]["thumbnail"] %>" alt="<%= book["volumeInfo"]["title"] %> thumbnail" />
-          <p><strong>Author:</strong> <%= book["volumeInfo"]["authors"]&.join(", ") %></p>
-          <p><strong>Genre:</strong> <%= book["volumeInfo"]["categories"]&.join(", ") %></p>
-          <p><strong>Description:</strong> <%= truncate(book["volumeInfo"]["description"], length: 200) %></p>
+        <li class="book-box">
+          <h3 class="book-title"><%= book["volumeInfo"]["title"] %></h3>
+          <img src="<%= book["volumeInfo"]["imageLinks"]["thumbnail"] %>" alt="<%= book["volumeInfo"]["title"] %> thumbnail" class="book-image" />
+          <p class="book-author"><strong>Author:</strong> <%= book["volumeInfo"]["authors"]&.join(", ") %></p>
+          <p class="book-genre"><strong>Genre:</strong> <%= book["volumeInfo"]["categories"]&.join(", ") %></p>
+          <p class="book-description"><strong>Description:</strong> <%= truncate(book["volumeInfo"]["description"], length: 200) %></p>
           <%= button_to "Add to Books List", create_from_api_path, method: :post, params: {
-        google_id: book["id"],
-        google_books_instance: book
-      }, class: "btn btn-success" %>
+            google_id: book["id"],
+            google_books_instance: book
+          }, class: "btn btn-success" %>
         </li>
       <% end %>
     </ul>

@@ -1,0 +1,44 @@
+.comment {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Newsreader', serif;
+  }
+  
+  .comment h4 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .comment p {
+    margin: 5px 0;
+  }
+  
+  .comment small {
+    display: block;
+    color: #999;
+  }
+  
+  .comment-form-container {
+    margin-top: 20px;
+  }
+  
+  .comment-form {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary {
+    background-color: #ff7043;
+    border-color: #ff7043;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #e65100;
+  }
+  

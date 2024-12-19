@@ -1,0 +1,69 @@
+.centered-h2 {
+  text-align: center;
+  font-family: 'Newsreader', serif;
+  color: #333;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fffedd;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.list-group-item {
+  background-color: #fffbf2;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-title {
+  text-decoration: none;
+  color: #333;
+}
+
+.btn-new {
+  background-color: #28A745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-new:hover {
+  background-color: #218838;
+}
+
+.btn-show {
+  background-color: #17A2B8;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-show:hover {
+  background-color: #138496;
+}
+
+.btn-edit {
+  background-color: #FFC107;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-edit:hover {
+  background-color: #FFAA00;
+}
