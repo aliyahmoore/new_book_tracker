@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby "3.2.0"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -18,6 +20,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "devise", "~> 4.9", ">= 4.9.3"
 gem "httparty"
+
 
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
