@@ -19,7 +19,6 @@ BookTracker is a full-stack book club management application built with **Ruby o
 
 ### 🔐 User Authentication
 - Secure authentication built with Devise  
-- Users can browse and search without signing in  
 - Must be signed in to add books or create book clubs  
 
 ### ⚙️ Frontend Enhancements
@@ -36,6 +35,7 @@ BookTracker is a full-stack book club management application built with **Ruby o
 - Deployment is currently paused as the project is still in active development and new features are being added
 
 ### 🌱 Future Improvements
+- Users can browse and search without signing in  
 - Personalized book recommendations
 - Social features (friend lists, club invites)
 - Enhanced UI/UX design and visual improvements
