@@ -46,4 +46,5 @@ BookTracker is a full-stack book club management application built with **Ruby o
 ### ⚠️ Work in Progress
 This project is still under active development.  
 New features, improvements to UI/UX, and enhanced user functionality are continually being added.  
+Additionally, file structure and code organization need to be cleaned up to improve maintainability and readability.  
 Stay tuned for updates and additional functionality in future releases.
