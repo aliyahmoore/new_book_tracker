@@ -32,20 +32,18 @@ BookTracker is a full-stack book club management application built with **Ruby o
 - Continuous updates, refactoring, and feature expansions  
 
 ### 🚀 Deployment
-- Live on **Heroku**  
-- Actively maintained with new Rails features and improvements  
+- Previously deployed on **Heroku**  
+- Deployment is currently paused as the project is still in active development and new features are being added
 
 ---
 
-## 🌱 Future Improvements
-```bash
+### 🌱 Future Improvements
 - Personalized book recommendations
 - Social features (friend lists, club invites)
 - Enhanced UI/UX design and visual improvements
 - Improved user functionality and experience
 
-## ⚠️ Work in Progress
-
+### ⚠️ Work in Progress
 This project is still under active development.  
 New features, improvements to UI/UX, and enhanced user functionality are continually being added.  
 Stay tuned for updates and additional functionality in future releases.
